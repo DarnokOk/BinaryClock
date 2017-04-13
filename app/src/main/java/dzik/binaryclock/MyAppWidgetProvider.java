@@ -31,20 +31,27 @@ public class MyAppWidgetProvider extends AppWidgetProvider {
     }
 
     @Override
-    public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager,
-                                          int appWidgetId, Bundle newOptions) {
+    public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Bundle newOptions) {
         createWidget(context, appWidgetManager, appWidgetId, newOptions);
     }
 
-    private void createWidget(Context context, AppWidgetManager appWidgetManager,
-                              int appWidgetId, Bundle options) {
+    private void createWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Bundle options) {
         mContext = context;
-        //TODO: count everything with MAX_HEIGHT
+        int diameter = getCircleDiameter(options);
         Intent intent = new Intent(mContext, ConfigurationActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, intent, 0);
         RemoteViews mainBody = new RemoteViews(mContext.getPackageName(), R.layout.widget);
         clearWidget(mainBody);
         mainBody.setOnClickPendingIntent(R.id.widget, pendingIntent);
+        //TODO: https://www.google.pl/search?client=ubuntu&channel=fs&q=android+get+widget+size&ie=utf-8&oe=utf-8&gfe_rd=cr&ei=DP3vWMf8GvKv8wfSmZjYBA
+        int padding;
+        if(options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH) / 6 < options.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT) / 3) {
+            padding = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT) - diameter * 3;
+            mainBody.setViewPadding(R.id.widget, 0, padding/2, 0, padding/2);
+        } else {
+            padding = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH) - diameter * 6;
+            mainBody.setViewPadding(R.id.widget, padding/2, 0, padding/2, 0);
+        }
         for(int j = 0; j < 3; j++) {
             RemoteViews circleLine = new RemoteViews(mContext.getPackageName(), R.layout.circle_line);
             for (int k = 0; k < 6; k++) {
@@ -76,6 +83,15 @@ public class MyAppWidgetProvider extends AppWidgetProvider {
 
         appWidgetManager.updateAppWidget(appWidgetId, update);
         */
+    }
+
+    private int getCircleDiameter(Bundle options) {
+        //TODO: const for circles in a row and a column
+        if(options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH) / 6 < options.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT) / 3) {
+            return options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH) / 6;
+        } else {
+            return options.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT) / 3;
+        }
     }
 
     private void clearWidget(RemoteViews views) {
