@@ -5,74 +5,106 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
+import android.graphics.Color;
 import android.os.Build;
+import android.os.Bundle;
+import android.support.annotation.IntegerRes;
+import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.util.TypedValue;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.RemoteViews;
 
-import dzik.binaryclock.R;
+import java.util.Locale;
 
 public class MyAppWidgetProvider extends AppWidgetProvider {
     private Context mContext;
 
     //TODO: don't update too often http://www.androidauthority.com/how-to-create-a-android-widget-726045/
+    @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        final int n = appWidgetIds.length;
+        super.onUpdate(context, appWidgetManager, appWidgetIds);
+        for (int appWidgetId : appWidgetIds) {
+            createWidget(context, appWidgetManager, appWidgetId, appWidgetManager.getAppWidgetOptions(appWidgetId));
+        }
+    }
+
+    @Override
+    public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager,
+                                          int appWidgetId, Bundle newOptions) {
+        createWidget(context, appWidgetManager, appWidgetId, newOptions);
+    }
+
+    private void createWidget(Context context, AppWidgetManager appWidgetManager,
+                              int appWidgetId, Bundle options) {
         mContext = context;
-        for (int i=0; i < n; i++) {
-            int appWidgetId = appWidgetIds[i];
-            Intent intent = new Intent(mContext, ConfigurationActivity.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, intent, 0);
-            /*
-            LayoutInflater inflater;
-            inflater = (LayoutInflater) mContext.getApplicationContext().getSystemService
-                    (Context.LAYOUT_INFLATER_SERVICE);
-            RelativeLayout layout = (RelativeLayout) inflater.inflate(R.layout.widget, null);
-            //layout.setId(100);
-
-            for(int j = 0; j < 3; j++) {
-                layout.addView(createLine());
+        //TODO: count everything with MAX_HEIGHT
+        Intent intent = new Intent(mContext, ConfigurationActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, intent, 0);
+        RemoteViews mainBody = new RemoteViews(mContext.getPackageName(), R.layout.widget);
+        clearWidget(mainBody);
+        mainBody.setOnClickPendingIntent(R.id.widget, pendingIntent);
+        for(int j = 0; j < 3; j++) {
+            RemoteViews circleLine = new RemoteViews(mContext.getPackageName(), R.layout.circle_line);
+            for (int k = 0; k < 6; k++) {
+                RemoteViews circle = new RemoteViews(mContext.getPackageName(), R.layout.circle_layout);
+                circle.setInt(R.id.imageViewCircle, "setColorFilter", Color.RED);
+                circle.setInt(R.id.imageViewCircleInside, "setColorFilter", Color.BLUE);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    circle.setTextViewTextSize(R.id.textView, TypedValue.COMPLEX_UNIT_SP, 40);
+                } else {
+                    circle.setFloat(R.id.textView, "setTextSize", 40);
+                }
+                circleLine.addView(R.id.circleLine, circle);
             }
-            */
-
-            //RemoteViews views = new RemoteViews(mContext.getPackageName(), 100);
-            RemoteViews views = new RemoteViews(mContext.getPackageName(), R.layout.widget);
-            views.setOnClickPendingIntent(R.id.widget, pendingIntent);
-            views.setTextViewText(R.id.text, "XDDD");
-            //appWidgetManager.updateAppWidget(appWidgetId, views);
-
-            RemoteViews update = new RemoteViews(mContext.getPackageName(), R.layout.widget);
-            for(int j = 0; j < 3; j++) {
-                RemoteViews imageView = new RemoteViews(mContext.getPackageName(), R.layout.circle_line);
-                //imageView.setImageViewResource(R.id.imageView, R.drawable.circle);
-                //Drawable myDrawable = ContextCompat.getDrawable(mContext, R.drawable.circle);//mContext.getResources().getDrawable(R.drawable.anImage);
-                //Bitmap bitmap  = ((BitmapDrawable) myDrawable).getBitmap();
-                //Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.circle);
-                //imageView.setImageViewBitmap(R.id.imageView, bitmap);
-                imageView.setImageViewResource(R.id.imageView, R.drawable.circle); //TODO: http://stackoverflow.com/questions/14338091/setting-a-bitmap-using-remoteview-not-working
-                update.addView(R.id.widget, imageView);
-            }
-            appWidgetManager.updateAppWidget(appWidgetId, update);
+            mainBody.addView(R.id.widget, circleLine);
         }
+        appWidgetManager.updateAppWidget(appWidgetId, mainBody);
+        /*
+        String msg=
+                String.format(Locale.getDefault(),
+                        "[%d-%d] x [%d-%d]",
+                        newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH),
+                        newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_WIDTH),
+                        newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT),
+                        newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT));
+
+        //update.setTextViewText(R.id.size, msg);
+        //update.removeAllViews();
+        //update.setTextViewText(R.id.textView, Integer.toString(newOptions.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH)));
+
+        appWidgetManager.updateAppWidget(appWidgetId, update);
+        */
     }
 
-    private LinearLayout createLine() {
-        LinearLayout linearLayout = new LinearLayout(mContext);
-        for(int i = 0; i < 6; i++) {
-            ImageView view = new ImageView(mContext);
-            view.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.circle));
-            linearLayout.addView(view);
-        }
-        return linearLayout;
+    private void clearWidget(RemoteViews views) {
+        views.removeAllViews(R.id.widget);
     }
+
+/*
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        if(intent.getAction().contentEquals("com.sec.android.widgetapp.APPWIDGET_RESIZE")) {
+            handleTouchWiz(context, intent);
+        }
+        super.onReceive(context, intent);
+    }
+
+    private void handleTouchWiz(Context context, Intent intent) {
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+
+        int appWidgetId = intent.getIntExtra("widgetId", 0);
+        int widgetSpanX = intent.getIntExtra("widgetspanx", 0);
+        int widgetSpanY = intent.getIntExtra("widgetspany", 0);
+
+        if(appWidgetId > 0 && widgetSpanX > 0 && widgetSpanY > 0) {
+            Bundle newOptions = new Bundle();
+            newOptions.putInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT, widgetSpanY * 74);
+            newOptions.putInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH, widgetSpanX * 74);
+
+            onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions);
+        }
+    }
+*/
 }
