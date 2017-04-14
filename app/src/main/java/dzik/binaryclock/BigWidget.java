@@ -5,9 +5,12 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.util.TypedValue;
 import android.widget.ImageView;
 import android.widget.RemoteViews;
+
+import dzik.binaryclock.clock.ClockManager;
 
 public class BigWidget {
     private RemoteViews mRemoteViews;
@@ -34,31 +37,58 @@ public class BigWidget {
     private void populateRemoteView() {
         clearRemoteView();
 
+        ClockManager manager = new ClockManager();
+
+        boolean[][] binary = new boolean[3][6];
+        //writeToArray(binary[0], manager.getBinaryHour());
+        //writeToArray(binary[1], manager.getBinaryMinute());
+        //writeToArray(binary[2], manager.getBinarySecond());
+        binary[0] = manager.getBinaryHour();
+        binary[1] = manager.getBinaryMinute();
+        binary[2] = manager.getBinarySecond();
+
+        int[] time = new int[3];
+        time[0] = manager.getHour();
+        time[1] = manager.getMinute();
+        time[2] = manager.getSecond();
+
         for(int j = 0; j < 3; j++) {
             RemoteViews circleLine = new RemoteViews(mContext.getPackageName(), R.layout.circle_line);
 
             for (int k = 0; k < 6; k++) {
-                circleLine.addView(R.id.circleLine, createCircleView());
+                circleLine.addView(R.id.circleLine, createCircleView(
+                        k == 5 ? Integer.toString(time[j]) : null, binary[j][k]));
+                //TODO: instead of toString just return string
             }
 
             mRemoteViews.addView(R.id.widget, circleLine);
         }
     }
 
-    private RemoteViews createCircleView() {
+    private void writeToArray(boolean[] to, boolean[] from) {
+        for(int i = 0; i < from.length; i++) {
+            to[i] = from[i];
+        }
+    }
+
+    private RemoteViews createCircleView(String text, boolean glow) {
         RemoteViews circle = new RemoteViews(mContext.getPackageName(), R.layout.circle_layout);
         circle.setTextViewTextSize(R.id.textView, TypedValue.COMPLEX_UNIT_SP, 20);
-        circle.setImageViewBitmap(R.id.imageViewCircle, createCircleBitmap());
+        if(text != null) {
+            circle.setTextViewText(R.id.textView, text);
+        }
+        circle.setImageViewBitmap(R.id.imageViewCircle, createCircleBitmap(glow));
         return circle;
     }
 
-    private Bitmap createCircleBitmap() {
+    private Bitmap createCircleBitmap(boolean glow) {
         ImageView myView = new ImageView(mContext);
         myView.measure(45, 45); //TODO: Don't allow for loose values
         myView.layout(0, 0, 45, 45);
 
         GradientDrawable drawable = (GradientDrawable) ContextCompat.getDrawable(mContext, R.drawable.circle);
-        drawable.setStroke(1, Color.BLACK);
+        //Log.w("XD", Boolean.toString(glow));
+        drawable.setStroke(1, glow ? Color.WHITE : Color.BLACK);
 
         myView.setImageDrawable(drawable);
         myView.setDrawingCacheEnabled(true);
