@@ -5,7 +5,6 @@ import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.RemoteViews;
 
 public class ConfigurationActivity extends Activity {
     private int mAppWidgetId;
@@ -18,9 +17,7 @@ public class ConfigurationActivity extends Activity {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         if (extras != null) {
-            mAppWidgetId = extras.getInt(
-                    AppWidgetManager.EXTRA_APPWIDGET_ID,
-                    AppWidgetManager.INVALID_APPWIDGET_ID);
+            mAppWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
         }
         if (mAppWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
             finish();
@@ -36,9 +33,7 @@ public class ConfigurationActivity extends Activity {
 
     private void onConfigured() {
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
-        RemoteViews views = new RemoteViews(this.getPackageName(),
-                R.layout.widget);
-        appWidgetManager.updateAppWidget(mAppWidgetId, views);
+        appWidgetManager.updateAppWidget(mAppWidgetId, new BigWidget(this).getWidget());
         Intent resultValue = new Intent();
         resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
         setResult(RESULT_OK, resultValue);

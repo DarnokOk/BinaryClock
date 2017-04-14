@@ -5,18 +5,4 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/widget_padding"
     android:orientation="horizontal"
-    android:gravity="center">
-    <!--
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="XD"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="XDD"/>
-
-    <include layout="@layout/circle_layout" />
-    <include layout="@layout/circle_layout" />
-    -->
-</LinearLayout>
+    android:gravity="center" />
