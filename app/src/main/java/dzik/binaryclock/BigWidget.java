@@ -15,6 +15,7 @@ public class BigWidget {
 
     public BigWidget(Context context) {
         mContext = context;
+
         createWidget();
     }
 
@@ -22,24 +23,29 @@ public class BigWidget {
         return mRemoteViews;
     }
 
-    public RemoteViews createWidget() { //TODO: make other class for this
+    public RemoteViews createWidget() {
         mRemoteViews = new RemoteViews(mContext.getPackageName(), R.layout.widget);
-        clearWidget();
+
         populateRemoteView();
+
         return mRemoteViews;
     }
 
     private void populateRemoteView() {
+        clearRemoteView();
+
         for(int j = 0; j < 3; j++) {
             RemoteViews circleLine = new RemoteViews(mContext.getPackageName(), R.layout.circle_line);
+
             for (int k = 0; k < 6; k++) {
-                circleLine.addView(R.id.circleLine, createCircle());
+                circleLine.addView(R.id.circleLine, createCircleView());
             }
+
             mRemoteViews.addView(R.id.widget, circleLine);
         }
     }
 
-    private RemoteViews createCircle() {
+    private RemoteViews createCircleView() {
         RemoteViews circle = new RemoteViews(mContext.getPackageName(), R.layout.circle_layout);
         circle.setTextViewTextSize(R.id.textView, TypedValue.COMPLEX_UNIT_SP, 20);
         circle.setImageViewBitmap(R.id.imageViewCircle, createCircleBitmap());
@@ -50,14 +56,16 @@ public class BigWidget {
         ImageView myView = new ImageView(mContext);
         myView.measure(45, 45); //TODO: Don't allow for loose values
         myView.layout(0, 0, 45, 45);
+
         GradientDrawable drawable = (GradientDrawable) ContextCompat.getDrawable(mContext, R.drawable.circle);
         drawable.setStroke(1, Color.BLACK);
+
         myView.setImageDrawable(drawable);
         myView.setDrawingCacheEnabled(true);
         return myView.getDrawingCache();
     }
 
-    private void clearWidget() {
+    private void clearRemoteView() {
         mRemoteViews.removeAllViews(R.id.widget);
     }
 }
