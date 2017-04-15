@@ -1,10 +1,13 @@
 package dzik.binaryclock;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import dzik.binaryclock.widget.BigWidget;
 
 public class ConfigurationActivity extends Activity {
     private int mAppWidgetId;

@@ -43,8 +43,7 @@ public class ClockManager {
         }
         int n = 0;
         for(int i = 6 - binary.length(); i < 6; i++) {
-            array[i] = binary.charAt(n) == '1'; //TODO: check if it works
-            //Log.w("ELO", binary.charAt(n));
+            array[i] = binary.charAt(n) == '1';
             Log.w("XDD", Boolean.toString(array[i]));
             n++;
         }

@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">BinaryClock</string>
+    <string name="app_name" translatable="false">BinaryClock</string>
+    <string name="circle_content_desc">Circle</string>
 </resources>

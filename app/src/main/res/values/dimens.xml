@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="widget_padding">8dp</dimen>
+    <dimen name="widget_padding">0dp</dimen>
     <dimen name="widget_border">4dp</dimen>
+    <dimen name="min_big_widget_width">250dp</dimen>
+    <dimen name="min_big_widget_height">110dp</dimen>
+
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="circle_horizontal_margin">2dp</dimen>
+    <dimen name="circle_vertical_margin">4dp</dimen>
+    <dimen name="big_circle_diameter">45dp</dimen>
+
+    <dimen name="text_size">22sp</dimen>
 </resources>

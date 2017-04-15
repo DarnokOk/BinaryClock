@@ -3,21 +3,22 @@
     android:id="@+id/circle"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="2dp"
-    android:layout_marginRight="2dp"
-    android:layout_marginBottom="4dp"
-    android:layout_marginTop="4dp">
+    android:layout_marginLeft="@dimen/circle_horizontal_margin"
+    android:layout_marginRight="@dimen/circle_horizontal_margin"
+    android:layout_marginBottom="@dimen/circle_vertical_margin"
+    android:layout_marginTop="@dimen/circle_vertical_margin">
     <ImageView
         android:id="@+id/imageViewCircle"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:contentDescription="@string/circle_content_desc"
+        android:layout_width="@dimen/big_circle_diameter"
+        android:layout_height="@dimen/big_circle_diameter"
         android:gravity="center"
         android:layout_centerInParent="true"/>
     <TextView
         android:id="@+id/textView"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="22sp"
+        android:textSize="@dimen/text_size"
         android:layout_centerInParent="true" />
 </RelativeLayout>

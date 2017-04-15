@@ -1,4 +1,4 @@
-package dzik.binaryclock;
+package dzik.binaryclock.widget;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -10,6 +10,7 @@ import android.util.TypedValue;
 import android.widget.ImageView;
 import android.widget.RemoteViews;
 
+import dzik.binaryclock.R;
 import dzik.binaryclock.clock.ClockManager;
 
 public class BigWidget {
@@ -40,9 +41,6 @@ public class BigWidget {
         ClockManager manager = new ClockManager();
 
         boolean[][] binary = new boolean[3][6];
-        //writeToArray(binary[0], manager.getBinaryHour());
-        //writeToArray(binary[1], manager.getBinaryMinute());
-        //writeToArray(binary[2], manager.getBinarySecond());
         binary[0] = manager.getBinaryHour();
         binary[1] = manager.getBinaryMinute();
         binary[2] = manager.getBinarySecond();
@@ -65,12 +63,6 @@ public class BigWidget {
         }
     }
 
-    private void writeToArray(boolean[] to, boolean[] from) {
-        for(int i = 0; i < from.length; i++) {
-            to[i] = from[i];
-        }
-    }
-
     private RemoteViews createCircleView(String text, boolean glow) {
         RemoteViews circle = new RemoteViews(mContext.getPackageName(), R.layout.circle_layout);
         circle.setTextViewTextSize(R.id.textView, TypedValue.COMPLEX_UNIT_SP, 20);
@@ -87,8 +79,7 @@ public class BigWidget {
         myView.layout(0, 0, 45, 45);
 
         GradientDrawable drawable = (GradientDrawable) ContextCompat.getDrawable(mContext, R.drawable.circle);
-        //Log.w("XD", Boolean.toString(glow));
-        drawable.setStroke(1, glow ? Color.WHITE : Color.BLACK);
+        drawable.setStroke(1, glow ? Color.RED : Color.BLACK);
 
         myView.setImageDrawable(drawable);
         myView.setDrawingCacheEnabled(true);
