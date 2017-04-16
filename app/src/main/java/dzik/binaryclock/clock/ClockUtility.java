@@ -4,7 +4,7 @@ import android.util.Log;
 
 import java.util.Calendar;
 
-public final class ClockUtility { //TODO: static class
+public final class ClockUtility {
     private ClockUtility() {
     }
 
