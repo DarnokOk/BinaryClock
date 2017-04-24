@@ -10,9 +10,6 @@ import net.margaritov.preference.colorpicker.ColorPickerPreference;
 import dzik.binaryclock.R;
 
 public class PreferencesActivity extends PreferenceActivity {
-    /**
-     * Called when the activity is first created.
-     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

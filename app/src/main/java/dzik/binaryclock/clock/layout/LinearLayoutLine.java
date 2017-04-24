@@ -1,6 +1,7 @@
 package dzik.binaryclock.clock.layout;
 
 import android.content.Context;
+import android.support.v4.content.res.ResourcesCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
@@ -16,6 +17,7 @@ public class LinearLayoutLine extends LinearLayout {
     public final static int CIRCLES_IN_LINE = 6;
     private boolean[] mBinaryTime;
     private String mTime;
+    private int mActiveColor;
     private TextView mTimeTextView;
     private ArrayList<SquareImageView> mCircles;
 
@@ -46,6 +48,13 @@ public class LinearLayoutLine extends LinearLayout {
         mTimeTextView.setText(mTime);
     }
 
+    public void setActiveColor(int color) {
+        mActiveColor = color;
+        for(int i = 0; i < CIRCLES_IN_LINE; i++) {
+            mCircles.get(i).setActiveColor(mActiveColor);
+        }
+    }
+
     public void createView() {
         mCircles = new ArrayList<>();
         setOrientation(LinearLayout.HORIZONTAL);
@@ -56,6 +65,7 @@ public class LinearLayoutLine extends LinearLayout {
 
             if(j == CIRCLES_IN_LINE - 1) {
                 mTimeTextView = ((TextView) circle.findViewById(R.id.circleTextView));
+                mTimeTextView.setTextColor(ResourcesCompat.getColor(getResources(), R.color.defaultFontColor, null));
             }
 
             mCircles.add((SquareImageView) circle.findViewById(R.id.circleImageView));

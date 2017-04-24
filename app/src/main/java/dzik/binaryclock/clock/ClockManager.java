@@ -2,11 +2,13 @@ package dzik.binaryclock.clock;
 
 import android.content.Context;
 import android.os.Handler;
+import android.support.v4.content.res.ResourcesCompat;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import dzik.binaryclock.R;
 import dzik.binaryclock.clock.layout.LinearLayoutLine;
 
 public class ClockManager {
@@ -15,6 +17,7 @@ public class ClockManager {
     private LinearLayout mClockLayout;
     private boolean[][] mBinaryTime = new boolean[3][6];
     private int[] mTime = new int[3];
+    private int[] mColor = new int[3];
 
     public ClockManager(Context context) {
         mContext = context;
@@ -41,6 +44,7 @@ public class ClockManager {
         getActualTime();
         for(int i = 0; i < 3; i++) {
             LinearLayoutLine line = (LinearLayoutLine) mClockLayout.getChildAt(i);
+            line.setActiveColor(mColor[i]);
             line.setBinaryTime(mBinaryTime[i]);
             String time = mTime[i] >= 10 ? Integer.toString(mTime[i]) : "0" + Integer.toString(mTime[i]);
             line.setTime(time);
@@ -56,6 +60,8 @@ public class ClockManager {
     private void createClock() {
         mClockLayout = new LinearLayout(mContext);
 
+        getColors();
+
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
         params.gravity = Gravity.CENTER;
         mClockLayout.setLayoutParams(params);
@@ -66,6 +72,12 @@ public class ClockManager {
         }
         updateTextSize();
         updateClock();
+    }
+
+    private void getColors() {
+        mColor[0] = ResourcesCompat.getColor(mContext.getResources(), R.color.defaultHourCircle, null);
+        mColor[1] = ResourcesCompat.getColor(mContext.getResources(), R.color.defaultMinuteCircle, null);
+        mColor[2] = ResourcesCompat.getColor(mContext.getResources(), R.color.defaultSecondCircle, null);
     }
 
     private void getActualTime() {

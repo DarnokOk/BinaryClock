@@ -5,24 +5,29 @@
             android:key="color1"
             android:title="XD"
             android:summary="XDD"
-            android:defaultValue="0xff0000ff" />
+            android:defaultValue="0xff0000ff"
+            android:persistent="true"
+            alphaSlider="false" />
         <net.margaritov.preference.colorpicker.ColorPickerPreference
             android:key="color2"
-            android:persistent="false"
             android:title="XD"
             android:summary="XDD"
-            android:defaultValue="0xff0000ff" />
+            android:defaultValue="0xff0000ff"
+            android:persistent="true"
+            alphaSlider="false" />
         <net.margaritov.preference.colorpicker.ColorPickerPreference
             android:key="color3"
             android:title="XD"
             android:summary="XDD"
             android:defaultValue="0xff0000ff"
-            alphaSlider="true" />
+            android:persistent="true"
+            alphaSlider="false" />
         <net.margaritov.preference.colorpicker.ColorPickerPreference
             android:key="color4"
-            android:persistent="false"
             android:title="XD"
             android:summary="XDD"
-            android:defaultValue="0xff0000ff" />
+            android:defaultValue="0xff0000ff"
+            android:persistent="true"
+            alphaSlider="false" />
     </PreferenceCategory>
 </PreferenceScreen>

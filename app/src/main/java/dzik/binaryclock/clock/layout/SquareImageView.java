@@ -3,6 +3,7 @@ package dzik.binaryclock.clock.layout;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.support.v4.content.res.ResourcesCompat;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -11,6 +12,7 @@ import dzik.binaryclock.R;
 
 public class SquareImageView extends ImageView {
     private GradientDrawable mDrawable;
+    private int mActiveColor;
     public SquareImageView(Context context) {
         super(context);
         createView();
@@ -35,11 +37,15 @@ public class SquareImageView extends ImageView {
     public void toggle(boolean toggle) {
         int color;
         if(toggle) {
-            color = Color.parseColor("#EEEEEE");
+            color = mActiveColor;
         } else {
-            color = Color.parseColor("#000000");
+            color = ResourcesCompat.getColor(getResources(), R.color.defaultNotActiveCircle, null);
         }
         mDrawable.setStroke((int) getContext().getResources().getDimension(R.dimen.circle_stroke_size), color);
+    }
+
+    public void setActiveColor(int color) {
+        mActiveColor = color;
     }
 
     @Override
