@@ -44,7 +44,6 @@ public class ClockManager {
         getActualTime();
         for(int i = 0; i < 3; i++) {
             LinearLayoutLine line = (LinearLayoutLine) mClockLayout.getChildAt(i);
-            line.setActiveColor(mColor[i]);
             line.setBinaryTime(mBinaryTime[i]);
             String time = mTime[i] >= 10 ? Integer.toString(mTime[i]) : "0" + Integer.toString(mTime[i]);
             line.setTime(time);
@@ -57,10 +56,15 @@ public class ClockManager {
         }
     }
 
+    private void updateColors() {
+        getColors();
+        for(int i = 0; i < 3; i++) {
+            ((LinearLayoutLine) mClockLayout.getChildAt(i)).setActiveColor(mColor[i]);
+        }
+    }
+
     private void createClock() {
         mClockLayout = new LinearLayout(mContext);
-
-        getColors();
 
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
         params.gravity = Gravity.CENTER;
@@ -71,6 +75,7 @@ public class ClockManager {
             mClockLayout.addView(new LinearLayoutLine(mContext));
         }
         updateTextSize();
+        updateColors();
         updateClock();
     }
 

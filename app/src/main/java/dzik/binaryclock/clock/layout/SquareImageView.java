@@ -41,7 +41,7 @@ public class SquareImageView extends ImageView {
         } else {
             color = ResourcesCompat.getColor(getResources(), R.color.defaultNotActiveCircle, null);
         }
-        mDrawable.setStroke((int) getContext().getResources().getDimension(R.dimen.circle_stroke_size), color);
+        mDrawable.setStroke(getMeasuredHeight() / 30, color);
     }
 
     public void setActiveColor(int color) {
