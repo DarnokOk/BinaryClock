@@ -2,5 +2,8 @@
     <string name="app_name" translatable="false">Binary Clock</string>
     <string name="circle_content_desc">Circle</string>
 
+    <string name="settings_title">Settings</string>
+
     <string name="title_activity_main" translatable="false">MainActivity</string>
+    <string name="title_activity_preferences" translatable="false">PreferencesActivity</string>
 </resources>

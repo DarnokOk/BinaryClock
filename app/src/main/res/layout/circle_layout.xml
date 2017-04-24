@@ -7,7 +7,7 @@
     android:layout_marginRight="@dimen/circle_horizontal_margin"
     android:layout_marginBottom="@dimen/circle_vertical_margin"
     android:layout_marginTop="@dimen/circle_vertical_margin">
-    <dzik.binaryclock.clock.SquareImageView
+    <dzik.binaryclock.clock.layout.SquareImageView
         android:id="@+id/circleImageView"
         android:contentDescription="@string/circle_content_desc"
         android:layout_width="match_parent"
@@ -19,6 +19,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:textSize="@dimen/text_size"
         android:layout_centerInParent="true" />
 </RelativeLayout>

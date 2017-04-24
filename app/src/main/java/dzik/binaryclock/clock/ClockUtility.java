@@ -1,15 +1,15 @@
 package dzik.binaryclock.clock;
 
-import android.util.Log;
-
 import java.util.Calendar;
 
 public final class ClockUtility {
+    public final static int BITS = 6;
+
     private ClockUtility() {
     }
 
     public static int getHour() {
-        return Calendar.getInstance().get(Calendar.HOUR);
+        return Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
     }
 
     public static int getMinute() {
@@ -33,14 +33,14 @@ public final class ClockUtility {
     }
 
     private static boolean[] getBooleanArray(String binary) {
-        boolean[] array = new boolean[6];
-        if(binary.length() < 6) {
-            for(int i = 0; i < 6 - binary.length(); i++) {
+        boolean[] array = new boolean[BITS];
+        if(binary.length() < BITS) {
+            for(int i = 0; i < BITS - binary.length(); i++) {
                 array[i] = false;
             }
         }
         int n = 0;
-        for(int i = 6 - binary.length(); i < 6; i++) {
+        for(int i = BITS - binary.length(); i < BITS; i++) {
             array[i] = binary.charAt(n) == '1';
             n++;
         }

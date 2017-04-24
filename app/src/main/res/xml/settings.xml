@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="XD">
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="color1"
+            android:title="XD"
+            android:summary="XDD"
+            android:defaultValue="0xff0000ff" />
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="color2"
+            android:persistent="false"
+            android:title="XD"
+            android:summary="XDD"
+            android:defaultValue="0xff0000ff" />
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="color3"
+            android:title="XD"
+            android:summary="XDD"
+            android:defaultValue="0xff0000ff"
+            alphaSlider="true" />
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="color4"
+            android:persistent="false"
+            android:title="XD"
+            android:summary="XDD"
+            android:defaultValue="0xff0000ff" />
+    </PreferenceCategory>
+</PreferenceScreen>
