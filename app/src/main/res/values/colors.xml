@@ -10,6 +10,6 @@
     <color name="defaultHourCircle">#429337</color>
     <color name="defaultMinuteCircle">#1e568f</color>
     <color name="defaultSecondCircle">#962c0c</color>
-    <color name="defaultNotActiveCircle">#505050</color>
+    <color name="defaultInactiveCircle">#505050</color>
     <color name="defaultFontColor">#BBBBBB</color>
 </resources>

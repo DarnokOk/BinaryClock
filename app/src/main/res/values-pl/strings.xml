@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">BinaryClock</string>
     <string name="circle_content_desc">Okrąg</string>
+    <string name="color_background_title">Tło</string>
+    <string name="color_circle_hour_title">Godzinne okręgi</string>
+    <string name="color_circle_inactive_title">Nieaktywne okręgi</string>
+    <string name="color_circle_minute_title">Minutowe okręgi</string>
+    <string name="color_circle_second_title">Sekundowe okręgi</string>
+    <string name="color_font_title">Czcionka</string>
+    <string name="colors_category">Kolory</string>
+    <string name="other_category">Inne</string>
+    <string name="reset_to_default">Przywróć ustawienia domyślne</string>
+    <string name="reset_to_default_summary">UWAGA: To nieodwracalne.</string>
+    <string name="settings_title">Opcje</string>
+    <string name="app_name">Zegar binarny</string>
 </resources>

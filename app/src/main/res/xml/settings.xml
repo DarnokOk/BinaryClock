@@ -1,33 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory android:title="XD">
+    <PreferenceCategory android:title="@string/colors_category">
         <net.margaritov.preference.colorpicker.ColorPickerPreference
-            android:key="color1"
-            android:title="XD"
-            android:summary="XDD"
-            android:defaultValue="0xff0000ff"
+            android:key="@string/color_background_key"
+            android:title="@string/color_background_title"
+            android:defaultValue="@color/defaultBackground"
             android:persistent="true"
             alphaSlider="false" />
         <net.margaritov.preference.colorpicker.ColorPickerPreference
-            android:key="color2"
-            android:title="XD"
-            android:summary="XDD"
-            android:defaultValue="0xff0000ff"
+            android:key="@string/color_circle_hour_key"
+            android:title="@string/color_circle_hour_title"
+            android:defaultValue="@color/defaultHourCircle"
             android:persistent="true"
             alphaSlider="false" />
         <net.margaritov.preference.colorpicker.ColorPickerPreference
-            android:key="color3"
-            android:title="XD"
-            android:summary="XDD"
-            android:defaultValue="0xff0000ff"
+            android:key="@string/color_circle_minute_key"
+            android:title="@string/color_circle_minute_title"
+            android:defaultValue="@color/defaultMinuteCircle"
             android:persistent="true"
             alphaSlider="false" />
         <net.margaritov.preference.colorpicker.ColorPickerPreference
-            android:key="color4"
-            android:title="XD"
-            android:summary="XDD"
-            android:defaultValue="0xff0000ff"
+            android:key="@string/color_circle_second_key"
+            android:title="@string/color_circle_second_title"
+            android:defaultValue="@color/defaultSecondCircle"
             android:persistent="true"
             alphaSlider="false" />
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="@string/color_circle_inactive_key"
+            android:title="@string/color_circle_inactive_title"
+            android:defaultValue="@color/defaultInactiveCircle"
+            android:persistent="true"
+            alphaSlider="false" />
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="@string/color_font_key"
+            android:title="@string/color_font_title"
+            android:defaultValue="@color/defaultFontColor"
+            android:persistent="true"
+            alphaSlider="false" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/other_category">
+        <Preference
+            android:key="@string/reset_to_default_key"
+            android:title="@string/reset_to_default"
+            android:summary="@string/reset_to_default_summary"/>
     </PreferenceCategory>
 </PreferenceScreen>

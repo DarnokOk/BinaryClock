@@ -2,19 +2,16 @@ package dzik.binaryclock.clock.clock;
 
 import android.content.Context;
 import android.os.Handler;
-import android.support.v4.content.res.ResourcesCompat;
-import android.util.TypedValue;
+import android.preference.PreferenceManager;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import dzik.binaryclock.R;
-import dzik.binaryclock.clock.ClockUtility;
 import dzik.binaryclock.clock.layout.LinearLayoutLine;
 
 public class ClockManager {
-    private static final int MS_TILL_REFRESH = 500; //At worst it will be delayed by 0,5s only
+    private static final int MS_TILL_REFRESH = 400; //At worst it will be delayed by 0,4s only, which isn't that much noticeable
     private Context mContext;
     private LinearLayout mClockLayout;
     private boolean[][] mBinaryTime = new boolean[3][6];
@@ -42,6 +39,11 @@ public class ClockManager {
         handler.postDelayed(updateTask, MS_TILL_REFRESH);
     }
 
+    public void onUpdatedPreferences() {
+        updateColors();
+        updateTextViews();
+    }
+
     private void updateClock() {
         getActualTime();
         for(int i = 0; i < 3; i++) {
@@ -52,9 +54,9 @@ public class ClockManager {
         }
     }
 
-    private void updateTextSize() {
+    private void updateTextViews() {
         for(int i = 0; i < 3; i++) {
-            ((LinearLayoutLine) mClockLayout.getChildAt(i)).updateTextSize();
+            ((LinearLayoutLine) mClockLayout.getChildAt(i)).updateTextViews();
         }
     }
 
@@ -76,15 +78,19 @@ public class ClockManager {
         for(int i = 0; i < 3; i++) {
             mClockLayout.addView(new LinearLayoutLine(mContext));
         }
-        updateTextSize();
+        updateTextViews();
         updateColors();
         updateClock();
     }
 
     private void getColors() {
-        mColor[0] = ResourcesCompat.getColor(mContext.getResources(), R.color.defaultHourCircle, null);
-        mColor[1] = ResourcesCompat.getColor(mContext.getResources(), R.color.defaultMinuteCircle, null);
-        mColor[2] = ResourcesCompat.getColor(mContext.getResources(), R.color.defaultSecondCircle, null);
+        mColor[0] = getColor(mContext.getString(R.string.color_circle_hour_key));
+        mColor[1] = getColor(mContext.getString(R.string.color_circle_minute_key));
+        mColor[2] = getColor(mContext.getString(R.string.color_circle_second_key));
+    }
+
+    private int getColor(String key) {
+        return PreferenceManager.getDefaultSharedPreferences(mContext).getInt(key, 0);
     }
 
     private void getActualTime() {

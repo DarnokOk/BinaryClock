@@ -1,6 +1,7 @@
 package dzik.binaryclock.clock.layout;
 
 import android.content.Context;
+import android.preference.PreferenceManager;
 import android.support.v4.content.res.ResourcesCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -39,7 +40,7 @@ public class LinearLayoutLine extends LinearLayout {
     public void setBinaryTime(boolean[] binaryTime) {
         mBinaryTime = binaryTime;
         for(int i = 0; i < CIRCLES_IN_LINE; i++) {
-            mCircles.get(i).setToggled(binaryTime[i]);
+            mCircles.get(i).setToggled(mBinaryTime[i]);
         }
     }
 
@@ -65,7 +66,6 @@ public class LinearLayoutLine extends LinearLayout {
 
             if(j == CIRCLES_IN_LINE - 1) {
                 mTimeTextView = ((TextView) circle.findViewById(R.id.circleTextView));
-                mTimeTextView.setTextColor(ResourcesCompat.getColor(getResources(), R.color.defaultFontColor, null));
             }
 
             mCircles.add((SquareImageView) circle.findViewById(R.id.circleImageView));
@@ -73,11 +73,13 @@ public class LinearLayoutLine extends LinearLayout {
         }
     }
 
-    public void updateTextSize() {
+    public void updateTextViews() {
         for(int j = 0; j < CIRCLES_IN_LINE; j++) {
             RelativeLayout circle = (RelativeLayout) getChildAt(j);
-            ((TextView) circle.findViewById(R.id.circleTextView)).setTextSize(getResources().getDimension(R.dimen.medium_text_size));
-            //TODO: size of textview from options
+            TextView timeTextView = ((TextView) circle.findViewById(R.id.circleTextView));
+            timeTextView.setTextSize(getResources().getDimension(R.dimen.medium_text_size));
+            timeTextView.setTextColor(PreferenceManager.getDefaultSharedPreferences(getContext())
+                    .getInt(getResources().getString(R.string.color_font_key), 0));
         }
     }
 

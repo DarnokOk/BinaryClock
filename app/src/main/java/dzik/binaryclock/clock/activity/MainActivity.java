@@ -1,8 +1,9 @@
 package dzik.binaryclock.clock.activity;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,12 +13,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 
 import dzik.binaryclock.R;
-import dzik.binaryclock.clock.ClockManager;
-import dzik.binaryclock.clock.PreferencesActivity;
+import dzik.binaryclock.clock.clock.ClockManager;
 
 public class MainActivity extends AppCompatActivity {
     private static final boolean AUTO_HIDE = true;
@@ -76,11 +75,19 @@ public class MainActivity extends AppCompatActivity {
         mClockManager.turnOn();
         setupLayout();
         setupActionBar();
+        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(mOnSharedPreferenceChangeListener);
+    }
+
+    @Override
+    protected void onDestroy() {
+        PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(mOnSharedPreferenceChangeListener);
+        super.onDestroy();
     }
 
     private void setupLayout() {
         setContentView(R.layout.activity_main);
         mActivityContent = (FrameLayout) findViewById(R.id.activityContent);
+        updateActivityBackgroundColor();
         mActivityContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,12 +97,25 @@ public class MainActivity extends AppCompatActivity {
         mActivityContent.addView(mClockManager.getClockLayout());
     }
 
+    private void updateActivityBackgroundColor() {
+        mActivityContent.setBackgroundColor(PreferenceManager.getDefaultSharedPreferences(this)
+                .getInt(getResources().getString(R.string.color_background_key), 0));
+    }
+
     private void setupActionBar() {
         ActionBar actionBar = getSupportActionBar();
         if(actionBar != null) {
             actionBar.setTitle(getString(R.string.app_name));
         }
     }
+
+    SharedPreferences.OnSharedPreferenceChangeListener mOnSharedPreferenceChangeListener =
+        new SharedPreferences.OnSharedPreferenceChangeListener() {
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                mClockManager.onUpdatedPreferences();
+                updateActivityBackgroundColor();
+            }
+        };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

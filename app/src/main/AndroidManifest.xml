@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".clock.MainActivity"
+            android:name=".clock.activity.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_main"
             android:theme="@style/FullscreenTheme">
@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".clock.PreferencesActivity"
+            android:name=".clock.activity.PreferencesActivity"
             android:label="@string/title_activity_preferences" />
     </application>
 

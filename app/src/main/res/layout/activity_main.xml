@@ -3,6 +3,5 @@
     android:id="@+id/activityContent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/defaultBackground"
-    tools:context="dzik.binaryclock.clock.MainActivity"
+    tools:context=".clock.activity.MainActivity"
     android:layout_gravity="center" />
