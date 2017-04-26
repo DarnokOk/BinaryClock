@@ -39,7 +39,7 @@ public class LinearLayoutLine extends LinearLayout {
     public void setBinaryTime(boolean[] binaryTime) {
         mBinaryTime = binaryTime;
         for(int i = 0; i < CIRCLES_IN_LINE; i++) {
-            mCircles.get(i).toggle(binaryTime[i]);
+            mCircles.get(i).setToggled(binaryTime[i]);
         }
     }
 

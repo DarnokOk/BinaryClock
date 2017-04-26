@@ -12,6 +12,7 @@ import dzik.binaryclock.R;
 
 public class SquareImageView extends ImageView {
     private GradientDrawable mDrawable;
+    private boolean mToggled;
     private int mActiveColor;
     public SquareImageView(Context context) {
         super(context);
@@ -34,7 +35,12 @@ public class SquareImageView extends ImageView {
         setImageDrawable(mDrawable);
     }
 
-    public void toggle(boolean toggle) {
+    public void setToggled(boolean toggled) {
+        mToggled = toggled;
+        toggle(mToggled);
+    }
+
+    private void toggle(boolean toggle) {
         int color;
         if(toggle) {
             color = mActiveColor;
@@ -51,10 +57,11 @@ public class SquareImageView extends ImageView {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        toggle(mToggled); //This sets the border to correct size
         ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) getLayoutParams();
         int margin = getMeasuredHeight() / 30;
         layoutParams.setMargins(margin, margin, margin, margin);
-        requestLayout();
         setMeasuredDimension(getMeasuredHeight(), getMeasuredHeight());
+        requestLayout();
     }
 }

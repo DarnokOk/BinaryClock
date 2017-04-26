@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         mVisible = true;
         mClockManager = new ClockManager(this);
         mClockManager.turnOn();
-        setupLayout();
+        setupLayout(); //TODO: layout should be relaid
         setupActionBar();
     }
 
