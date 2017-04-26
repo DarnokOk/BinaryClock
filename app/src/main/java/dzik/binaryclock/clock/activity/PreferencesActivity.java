@@ -1,4 +1,4 @@
-package dzik.binaryclock.clock;
+package dzik.binaryclock.clock.activity;
 
 import android.os.Bundle;
 import android.preference.Preference;

@@ -1,4 +1,4 @@
-package dzik.binaryclock.clock;
+package dzik.binaryclock.clock.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 
 import dzik.binaryclock.R;
+import dzik.binaryclock.clock.ClockManager;
+import dzik.binaryclock.clock.PreferencesActivity;
 
 public class MainActivity extends AppCompatActivity {
     private static final boolean AUTO_HIDE = true;
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         mVisible = true;
         mClockManager = new ClockManager(this);
         mClockManager.turnOn();
-        setupLayout(); //TODO: layout should be relaid
+        setupLayout();
         setupActionBar();
     }
 

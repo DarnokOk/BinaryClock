@@ -1,4 +1,4 @@
-package dzik.binaryclock.clock;
+package dzik.binaryclock.clock.clock;
 
 import java.util.Calendar;
 

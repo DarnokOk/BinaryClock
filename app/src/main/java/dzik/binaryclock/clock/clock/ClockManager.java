@@ -1,4 +1,4 @@
-package dzik.binaryclock.clock;
+package dzik.binaryclock.clock.clock;
 
 import android.content.Context;
 import android.os.Handler;
@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import dzik.binaryclock.R;
+import dzik.binaryclock.clock.ClockUtility;
 import dzik.binaryclock.clock.layout.LinearLayoutLine;
 
 public class ClockManager {
