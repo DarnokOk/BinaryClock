@@ -69,13 +69,20 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if(preferences.getString(getString(R.string.theme_key), getString(R.string.theme_dark_value))
+                .equals(getString(R.string.theme_dark_value))) {
+            setTheme(R.style.DarkFullscreenTheme);
+        } else {
+            setTheme(R.style.LightFullscreenTheme);
+        }
         super.onCreate(savedInstanceState);
         mVisible = true;
         mClockManager = new ClockManager(this);
         mClockManager.turnOn();
         setupLayout();
         setupActionBar();
-        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(mOnSharedPreferenceChangeListener);
+        preferences.registerOnSharedPreferenceChangeListener(mOnSharedPreferenceChangeListener);
     }
 
     @Override

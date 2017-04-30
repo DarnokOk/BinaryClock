@@ -46,7 +46,9 @@ public class LinearLayoutLine extends LinearLayout {
 
     public void setTime(String time) {
         mTime = time;
-        mTimeTextView.setText(mTime);
+        if(PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean(getResources().getString(R.string.display_numbers_key), true)) {
+            mTimeTextView.setText(mTime);
+        }
     }
 
     public void setActiveColor(int color) {
@@ -80,6 +82,9 @@ public class LinearLayoutLine extends LinearLayout {
             timeTextView.setTextSize(getResources().getDimension(R.dimen.medium_text_size));
             timeTextView.setTextColor(PreferenceManager.getDefaultSharedPreferences(getContext())
                     .getInt(getResources().getString(R.string.color_font_key), 0));
+        }
+        if(!PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean(getResources().getString(R.string.display_numbers_key), true)) {
+            mTimeTextView.setText("");
         }
     }
 

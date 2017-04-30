@@ -6,6 +6,21 @@
 
     <string name="title_activity_main" translatable="false">MainActivity</string>
     <string name="title_activity_preferences" translatable="false">PreferencesActivity</string>
+
+    <string name="theme_dialog_message">Would you like to set clock\'s theme to this, too?</string>
+    <string name="theme_dialog_positive">OK</string>
+    <string name="theme_dialog_negative">Cancel</string>
+
+    <string name="look_and_feel_category">Look</string>
+        <string name="theme_key" translatable="false">theme</string>
+            <string name="theme_title">Theme</string>
+                <string name="theme_light">Light</string>
+                    <string name="theme_light_value" translatable="false">light</string>
+                <string name="theme_dark">Dark</string>
+                    <string name="theme_dark_value" translatable="false">dark</string>
+
+        <string name="display_numbers_key" translatable="false">display_numbers</string>
+            <string name="display_numbers_title">Display numbers</string>
     
     <string name="colors_category">Colors</string>
         <string name="color_background_key" translatable="false">color_background</string>
@@ -26,9 +41,8 @@
         <string name="color_font_key" translatable="false">color_font</string>
             <string name="color_font_title">Font</string>
 
-        <string name="reset_to_default_key" translatable="false">reset_to_default</string>
-            <string name="reset_to_default">Reset to default</string>
-                <string name="reset_to_default_summary">WARNING: It\'s irreversible.</string>
-
     <string name="other_category">Other</string>
+        <string name="reset_to_default_key" translatable="false">reset_to_default</string>
+            <string name="reset_to_default_title">Reset to default</string>
+                <string name="reset_to_default_summary">WARNING: It\'s irreversible.</string>
 </resources>
