@@ -15,6 +15,7 @@ import dzik.binaryclock.clock.dialogs.MessageDialog;
 
 public class PreferencesActivity extends AppCompatActivity {
     private static final String THEME_DIALOG_TAG = "theme";
+    private static final String CHANGE_TO_DEFAULT_DIALOG_TAG = "changeToDefault";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -33,28 +34,52 @@ public class PreferencesActivity extends AppCompatActivity {
     }
 
     public static class MyFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
-        private boolean mShowDialog;
+        private boolean mShowThemeDialog;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            mShowDialog = true;
+            mShowThemeDialog = true;
             addPreferencesFromResource(R.xml.settings);
             findPreference(getString(R.string.reset_to_default_key)).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    //TODO: first show a warning dialog
-                    mShowDialog = false;
-                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                    String theme = preferences.getString(getString(R.string.theme_key), getString(R.string.theme_dark_value));
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.clear();
-                    editor.putString(getString(R.string.theme_key), theme);
-                    setDefaultColors(editor);
-                    editor.apply();
+                    final MessageDialog dialog = MessageDialog.newInstance(getString(R.string.change_to_default_dialog_message),
+                            getString(R.string.change_to_default_dialog_positive),
+                            getString(R.string.change_to_default_dialog_negative), new MessageDialog.DialogListener() {
+                                @Override
+                                public void onPositiveClick() {
+                                    mShowThemeDialog = false;
+                                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                                    String theme = preferences.getString(getString(R.string.theme_key), getString(R.string.theme_dark_value));
+                                    SharedPreferences.Editor editor = preferences.edit();
+                                    editor.clear();
+                                    editor.putString(getString(R.string.theme_key), theme);
+                                    setDefaultColors(editor);
+                                    editor.apply();
+                                    dismissDialog(CHANGE_TO_DEFAULT_DIALOG_TAG);
+                                    getActivity().recreate(); //The easiest way to update preferences' look accordingly
+                                    mShowThemeDialog = true;
+                                }
 
-                    getActivity().recreate(); //The easiest way to update preferences' look accordingly
-                    mShowDialog = true;
+                                @Override
+                                public void onNegativeClick() {
+                                }
+
+                                @Override
+                                public void onCancel() {
+                                }
+
+                                @Override
+                                public int describeContents() {
+                                    return 0;
+                                }
+
+                                @Override
+                                public void writeToParcel(Parcel parcel, int i) {
+                                }
+                            });
+                    dialog.show(((AppCompatActivity) getActivity()).getSupportFragmentManager(), CHANGE_TO_DEFAULT_DIALOG_TAG);
                     return false;
                 }
             });
@@ -75,7 +100,7 @@ public class PreferencesActivity extends AppCompatActivity {
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            if (key.equals(getString(R.string.theme_key)) && mShowDialog) {
+            if (key.equals(getString(R.string.theme_key)) && mShowThemeDialog) {
                 final MessageDialog dialog = MessageDialog.newInstance(getString(R.string.theme_dialog_message),
                         getString(R.string.theme_dialog_positive),
                         getString(R.string.theme_dialog_negative), new MessageDialog.DialogListener() {
@@ -111,11 +136,15 @@ public class PreferencesActivity extends AppCompatActivity {
             }
         }
 
-        private void refreshTheme() {
-            Fragment fragment = ((AppCompatActivity) getActivity()).getSupportFragmentManager().findFragmentByTag(THEME_DIALOG_TAG);
+        private void dismissDialog(String tag) {
+            Fragment fragment = ((AppCompatActivity) getActivity()).getSupportFragmentManager().findFragmentByTag(tag);
             if(fragment instanceof MessageDialog) {
                 ((MessageDialog) fragment).dismiss();
             }
+        }
+
+        private void refreshTheme() {
+            dismissDialog(THEME_DIALOG_TAG);
             getActivity().recreate();
         }
 

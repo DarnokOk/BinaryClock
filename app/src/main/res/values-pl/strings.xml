@@ -18,4 +18,10 @@
     <string name="theme_dark">Ciemny</string>
     <string name="theme_title">Motyw</string>
     <string name="theme_light">Jasny</string>
+    <string name="change_to_default_dialog_message">Na pewno chcesz przywrócić ustawienia domyślne? Tej operacji nie da się cofnąć.</string>
+    <string name="change_to_default_dialog_negative">Anuluj</string>
+    <string name="change_to_default_dialog_positive">Przywróć</string>
+    <string name="theme_dialog_message">Chcesz również ustawić motyw zegarka na ten?</string>
+    <string name="theme_dialog_negative">Nie</string>
+    <string name="theme_dialog_positive">Tak</string>
 </resources>

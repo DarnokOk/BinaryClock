@@ -8,8 +8,12 @@
     <string name="title_activity_preferences" translatable="false">PreferencesActivity</string>
 
     <string name="theme_dialog_message">Would you like to set clock\'s theme to this, too?</string>
-    <string name="theme_dialog_positive">OK</string>
-    <string name="theme_dialog_negative">Cancel</string>
+    <string name="theme_dialog_positive">Yes</string>
+    <string name="theme_dialog_negative">No</string>
+
+    <string name="change_to_default_dialog_message">Are you sure you want to reset settings to default? It can\'t be undone.</string>
+    <string name="change_to_default_dialog_positive">Reset</string>
+    <string name="change_to_default_dialog_negative">Cancel</string>
 
     <string name="look_and_feel_category">Look</string>
         <string name="theme_key" translatable="false">theme</string>
