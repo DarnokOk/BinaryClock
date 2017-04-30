@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#363636</color>
-    <color name="colorPrimaryDark">#282828</color>
-    <color name="colorAccent">#BBBBBB</color>
-    <color name="defaultBackground">#505050</color>
+    <color name="colorPrimary">#505050</color>
+    <color name="colorPrimaryDark">#404040</color>
+    <color name="colorAccentDark">#BBBBBB</color>
+    <color name="colorAccentLight">#606060</color>
+
     <color name="blackOverlay">#66000000</color>
+
+    <color name="defaultDarkBackground">#303030</color>
+    <color name="defaultDarkHourCircle">#429337</color>
+    <color name="defaultDarkMinuteCircle">#1e568f</color>
+    <color name="defaultDarkSecondCircle">#962c0c</color>
+    <color name="defaultDarkInactiveCircle">#505050</color>
+    <color name="defaultDarkFontColor">@color/colorAccentDark</color>
+
+    <color name="defaultLightBackground">#fafafa</color>
+    <color name="defaultLightHourCircle">#A3B86C</color>
+    <color name="defaultLightMinuteCircle">#1496BB</color>
+    <color name="defaultLightSecondCircle">#F26D21</color>
+    <color name="defaultLightInactiveCircle">#404040</color>
+    <color name="defaultLightFontColor">@color/colorAccentLight</color>
 </resources>

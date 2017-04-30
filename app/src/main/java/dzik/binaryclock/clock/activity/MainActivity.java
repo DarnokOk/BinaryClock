@@ -1,28 +1,23 @@
-package dzik.binaryclock.clock;
+package dzik.binaryclock.clock.activity;
 
 import android.annotation.SuppressLint;
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Gravity;
-import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TableLayout;
 
 import dzik.binaryclock.R;
+import dzik.binaryclock.clock.clock.ClockManager;
 
-/**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- */
 public class MainActivity extends AppCompatActivity {
     private static final boolean AUTO_HIDE = true;
     private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
@@ -30,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private final Handler mHideHandler = new Handler();
     private FrameLayout mActivityContent;
     private boolean mVisible;
+    private ClockManager mClockManager;
 
     private final Runnable mSetFullscreenRunnable = new Runnable() {
         @SuppressLint("InlinedApi")
@@ -73,55 +69,77 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if(preferences.getString(getString(R.string.theme_key), getString(R.string.theme_dark_value))
+                .equals(getString(R.string.theme_dark_value))) {
+            setTheme(R.style.DarkFullscreenTheme);
+        } else {
+            setTheme(R.style.LightFullscreenTheme);
+        }
         super.onCreate(savedInstanceState);
         mVisible = true;
+        mClockManager = new ClockManager(this);
+        mClockManager.turnOn();
         setupLayout();
         setupActionBar();
+        preferences.registerOnSharedPreferenceChangeListener(mOnSharedPreferenceChangeListener);
+    }
+
+    @Override
+    protected void onDestroy() {
+        PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(mOnSharedPreferenceChangeListener);
+        super.onDestroy();
     }
 
     private void setupLayout() {
         setContentView(R.layout.activity_main);
         mActivityContent = (FrameLayout) findViewById(R.id.activityContent);
+        updateActivityBackgroundColor();
         mActivityContent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 toggle();
             }
         });
+        mActivityContent.addView(mClockManager.getClockLayout());
+    }
 
-        //TODO: ClockManager class {
-        LinearLayout lines = new LinearLayout(this);
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
-        params.gravity = Gravity.CENTER;
-        lines.setLayoutParams(params);
-        lines.setOrientation(LinearLayout.VERTICAL);
-        lines.setKeepScreenOn(true);
-        for(int i = 0; i < 3; i++) {
-            LinearLayoutLine line = new LinearLayoutLine(this);
-            line.setOrientation(LinearLayout.HORIZONTAL);
-
-            for(int j = 0; j < 6; j++) {
-                RelativeLayout circle = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.circle_layout, null); //TODO: margins
-                circle.setLayoutParams(new TableLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT, 1f));
-                GradientDrawable drawable = new GradientDrawable();
-                drawable.setShape(GradientDrawable.OVAL);
-                drawable.setStroke((int) getResources().getDimension(R.dimen.circle_stroke_size), Color.parseColor("#EEEEEE"));
-                SquareImageView circleImageView = ((SquareImageView) circle.findViewById(R.id.circleImageView));
-                circleImageView.setImageDrawable(drawable);
-
-                line.addView(circle);
-            }
-
-            lines.addView(line);
-        }
-        //TODO: }
-        mActivityContent.addView(lines);
+    private void updateActivityBackgroundColor() {
+        mActivityContent.setBackgroundColor(PreferenceManager.getDefaultSharedPreferences(this)
+                .getInt(getResources().getString(R.string.color_background_key), 0));
     }
 
     private void setupActionBar() {
-        ActionBar actionBar = getSupportActionBar(); //TODO: add options to this bar
+        ActionBar actionBar = getSupportActionBar();
         if(actionBar != null) {
             actionBar.setTitle(getString(R.string.app_name));
+        }
+    }
+
+    SharedPreferences.OnSharedPreferenceChangeListener mOnSharedPreferenceChangeListener =
+        new SharedPreferences.OnSharedPreferenceChangeListener() {
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                mClockManager.onUpdatedPreferences();
+                updateActivityBackgroundColor();
+            }
+        };
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.settings:
+                Intent intent = new Intent(this, PreferencesActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 

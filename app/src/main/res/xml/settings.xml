@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/look_and_feel_category">
+        <ListPreference
+            android:key="@string/theme_key"
+            android:title="@string/theme_title"
+            android:summary="%s"
+            android:defaultValue="@string/theme_dark_value"
+            android:entries="@array/themes"
+            android:entryValues="@array/themes_values"
+            android:persistent="true" />
+        <CheckBoxPreference
+            android:key="@string/display_numbers_key"
+            android:title="@string/display_numbers_title"
+            android:defaultValue="true"
+            android:persistent="true" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/colors_category">
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="@string/color_background_key"
+            android:title="@string/color_background_title"
+            android:defaultValue="@color/defaultDarkBackground"
+            android:persistent="true"
+            alphaSlider="false" />
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="@string/color_circle_hour_key"
+            android:title="@string/color_circle_hour_title"
+            android:defaultValue="@color/defaultDarkHourCircle"
+            android:persistent="true"
+            alphaSlider="false" />
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="@string/color_circle_minute_key"
+            android:title="@string/color_circle_minute_title"
+            android:defaultValue="@color/defaultDarkMinuteCircle"
+            android:persistent="true"
+            alphaSlider="false" />
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="@string/color_circle_second_key"
+            android:title="@string/color_circle_second_title"
+            android:defaultValue="@color/defaultDarkSecondCircle"
+            android:persistent="true"
+            alphaSlider="false" />
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="@string/color_circle_inactive_key"
+            android:title="@string/color_circle_inactive_title"
+            android:defaultValue="@color/defaultDarkInactiveCircle"
+            android:persistent="true"
+            alphaSlider="false" />
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:key="@string/color_font_key"
+            android:title="@string/color_font_title"
+            android:defaultValue="@color/defaultDarkFontColor"
+            android:dependency="@string/display_numbers_key"
+            android:persistent="true"
+            alphaSlider="false" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/other_category">
+        <Preference
+            android:key="@string/reset_to_default_key"
+            android:title="@string/reset_to_default_title"
+            android:summary="@string/reset_to_default_summary"
+            android:persistent="true" />
+    </PreferenceCategory>
+</PreferenceScreen>
