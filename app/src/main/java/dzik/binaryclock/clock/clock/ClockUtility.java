@@ -32,7 +32,7 @@ public final class ClockUtility {
         return getBooleanArray(Integer.toBinaryString(getSecond()));
     }
 
-    private static boolean[] getBooleanArray(String binary) {
+    public static boolean[] getBooleanArray(String binary) {
         boolean[] array = new boolean[BITS];
         if(binary.length() < BITS) {
             for(int i = 0; i < BITS - binary.length(); i++) {
