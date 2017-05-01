@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        PreferenceManager.setDefaultValues(this, R.xml.settings, false);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         if(preferences.getString(getString(R.string.theme_key), getString(R.string.theme_dark_value))
                 .equals(getString(R.string.theme_dark_value))) {

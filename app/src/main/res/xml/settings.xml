@@ -29,6 +29,11 @@
             android:entries="@array/numbers_size"
             android:entryValues="@array/numbers_size_values"
             android:persistent="true" />
+        <CheckBoxPreference
+            android:key="@string/fill_circles_key"
+            android:title="@string/fill_circles_title"
+            android:defaultValue="false"
+            android:persistent="true" />
         <ListPreference
             android:key="@string/circle_width_key"
             android:title="@string/circle_width_title"

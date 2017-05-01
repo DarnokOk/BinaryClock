@@ -93,7 +93,7 @@ public class LinearLayoutLine extends LinearLayout {
         if(PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean(getResources().getString(R.string.bold_numbers_key), false)) {
             mTimeTextView.setTypeface(mTimeTextView.getTypeface(), Typeface.BOLD);
         } else {
-            mTimeTextView.setTypeface(mTimeTextView.getTypeface(), Typeface.NORMAL);
+            mTimeTextView.setTypeface(null, Typeface.NORMAL);
         }
     }
 

@@ -1,6 +1,7 @@
 package dzik.binaryclock.clock.layout;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
@@ -52,6 +53,12 @@ public class SquareImageView extends ImageView {
                 .getString(getResources().getString(R.string.circle_width_key),
                         getResources().getString(R.string.circle_width_normal_value)));
         mDrawable.setStroke(getMeasuredHeight() * multiplier / 120, color);
+        if(PreferenceManager.getDefaultSharedPreferences(getContext())
+                .getBoolean(getResources().getString(R.string.fill_circles_key), false)) {
+            mDrawable.setColor(color);
+        } else {
+            mDrawable.setColor(Color.TRANSPARENT);
+        }
     }
 
     public void setActiveColor(int color) {

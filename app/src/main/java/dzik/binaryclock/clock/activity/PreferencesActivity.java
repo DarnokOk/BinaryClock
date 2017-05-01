@@ -18,6 +18,7 @@ public class PreferencesActivity extends AppCompatActivity {
     private static final String CHANGE_TO_DEFAULT_DIALOG_TAG = "changeToDefault";
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         if(preferences.getString(getString(R.string.theme_key), getString(R.string.theme_dark_value))
                 .equals(getString(R.string.theme_dark_value))) {
@@ -25,7 +26,6 @@ public class PreferencesActivity extends AppCompatActivity {
         } else {
             setTheme(R.style.LightAppTheme);
         }
-        super.onCreate(savedInstanceState);
         getFragmentManager().beginTransaction().replace(android.R.id.content,
                 new MyFragment()).commit();
         if(getSupportActionBar() != null) {

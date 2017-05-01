@@ -9,7 +9,8 @@
         android:supportsRtl="true">
         <activity
             android:name=".clock.activity.MainActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize">
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/DarkFullscreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -17,7 +18,8 @@
         </activity>
         <activity
             android:name=".clock.activity.PreferencesActivity"
-            android:label="@string/title_activity_preferences" />
+            android:label="@string/title_activity_preferences"
+            android:theme="@style/DarkAppTheme" />
     </application>
 
 </manifest>

@@ -44,6 +44,9 @@
                 <string name="numbers_size_enormous">Enormous</string>
                     <string name="numbers_size_enormous_value" translatable="false">64</string>
 
+        <string name="fill_circles_key" translatable="false">fill_circles</string>
+            <string name="fill_circles_title">Fill circles</string>
+
         <string name="circle_width_key" translatable="false">circle_width</string>
             <string name="circle_width_title">Circle\'s edge width</string>
                 <string name="circle_width_tiny">Tiny</string>
