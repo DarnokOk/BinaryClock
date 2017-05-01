@@ -8,4 +8,30 @@
         <item>@string/theme_dark_value</item>
         <item>@string/theme_light_value</item>
     </string-array>
+    <string-array name="numbers_size">
+        <item>@string/numbers_size_tiny</item>
+        <item>@string/numbers_size_small</item>
+        <item>@string/numbers_size_normal</item>
+        <item>@string/numbers_size_big</item>
+        <item>@string/numbers_size_huge</item>
+        <item>@string/numbers_size_enormous</item>
+    </string-array>
+    <string-array name="numbers_size_values">
+        <item>@string/numbers_size_tiny_value</item>
+        <item>@string/numbers_size_small_value</item>
+        <item>@string/numbers_size_normal_value</item>
+        <item>@string/numbers_size_big_value</item>
+        <item>@string/numbers_size_huge_value</item>
+        <item>@string/numbers_size_enormous_value</item>
+    </string-array>
+    <!--
+    <string-array name="numbers_size_values">
+        <item>@dimen/tiny_text_size</item>
+        <item>@dimen/small_text_size</item>
+        <item>@dimen/normal_text_size</item>
+        <item>@dimen/big_text_size</item>
+        <item>@dimen/huge_text_size</item>
+        <item>@dimen/enormous_text_size</item>
+    </string-array>
+    -->
 </resources>

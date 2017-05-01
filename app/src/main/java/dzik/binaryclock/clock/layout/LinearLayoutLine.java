@@ -2,7 +2,6 @@ package dzik.binaryclock.clock.layout;
 
 import android.content.Context;
 import android.preference.PreferenceManager;
-import android.support.v4.content.res.ResourcesCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
@@ -79,9 +78,13 @@ public class LinearLayoutLine extends LinearLayout {
         for(int j = 0; j < CIRCLES_IN_LINE; j++) {
             RelativeLayout circle = (RelativeLayout) getChildAt(j);
             TextView timeTextView = ((TextView) circle.findViewById(R.id.circleTextView));
-            timeTextView.setTextSize(getResources().getDimension(R.dimen.medium_text_size));
+            String size = PreferenceManager.getDefaultSharedPreferences(getContext())
+                    .getString(getResources().getString(R.string.numbers_size_key),
+                            getResources().getString(R.string.numbers_size_small_value));
+            size = size.replaceAll("[^\\d\\.]", "");
+            timeTextView.setTextSize(Float.parseFloat(size));
             timeTextView.setTextColor(PreferenceManager.getDefaultSharedPreferences(getContext())
-                    .getInt(getResources().getString(R.string.color_font_key), 0));
+                    .getInt(getResources().getString(R.string.color_numbers_key), 0));
         }
         if(!PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean(getResources().getString(R.string.display_numbers_key), true)) {
             mTimeTextView.setText("");
