@@ -6,7 +6,7 @@
     <string name="color_circle_inactive_title">Nieaktywne okręgi</string>
     <string name="color_circle_minute_title">Minutowe okręgi</string>
     <string name="color_circle_second_title">Sekundowe okręgi</string>
-    <string name="color_font_title">Czcionka</string>
+    <string name="color_numbers_title">Liczby</string>
     <string name="colors_category">Kolory</string>
     <string name="other_category">Inne</string>
     <string name="reset_to_default_title">Przywróć ustawienia domyślne</string>
@@ -18,10 +18,25 @@
     <string name="theme_dark">Ciemny</string>
     <string name="theme_title">Motyw</string>
     <string name="theme_light">Jasny</string>
-    <string name="change_to_default_dialog_message">Na pewno chcesz przywrócić ustawienia domyślne? Tej operacji nie da się cofnąć.</string>
+    <string name="change_to_default_dialog_message">Na pewno chcesz przywrócić wszystkie ustawienia domyślne? Tej operacji nie da się cofnąć.</string>
     <string name="change_to_default_dialog_negative">Anuluj</string>
     <string name="change_to_default_dialog_positive">Przywróć</string>
     <string name="theme_dialog_message">Chcesz również ustawić motyw zegarka na ten?</string>
     <string name="theme_dialog_negative">Nie</string>
     <string name="theme_dialog_positive">Tak</string>
+    <string name="numbers_size_title">Rozmiar liczb</string>
+    <string name="numbers_size_tiny">Malutki</string>
+    <string name="numbers_size_small">Mały</string>
+    <string name="numbers_size_normal">Normalny</string>
+    <string name="numbers_size_big">Duży</string>
+    <string name="numbers_size_huge">Wielki</string>
+    <string name="numbers_size_enormous">Ogromny</string>
+    <string name="bold_numbers_title">Pogrubione liczby</string>
+    <string name="circle_width_title">Szerokość krawędzi okręgu</string>
+    <string name="circle_width_big">Duża</string>
+    <string name="circle_width_enormous">Ogromna</string>
+    <string name="circle_width_huge">Wielka</string>
+    <string name="circle_width_normal">Normalna</string>
+    <string name="circle_width_small">Mała</string>
+    <string name="circle_width_tiny">Malutka</string>
 </resources>

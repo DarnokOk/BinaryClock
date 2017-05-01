@@ -1,6 +1,9 @@
 package dzik.binaryclock.clock.activity;
 
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.preference.Preference;
@@ -172,7 +175,7 @@ public class PreferencesActivity extends AppCompatActivity {
             editor.putInt(getString(R.string.color_circle_minute_key), minuteCircle);
             editor.putInt(getString(R.string.color_circle_second_key), secondCircle);
             editor.putInt(getString(R.string.color_circle_inactive_key), inactiveCircle);
-            editor.putInt(getString(R.string.color_font_key), font);
+            editor.putInt(getString(R.string.color_numbers_key), font);
         }
     }
 }

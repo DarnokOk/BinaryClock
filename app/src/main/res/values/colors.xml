@@ -18,6 +18,6 @@
     <color name="defaultLightHourCircle">#A3B86C</color>
     <color name="defaultLightMinuteCircle">#1496BB</color>
     <color name="defaultLightSecondCircle">#F26D21</color>
-    <color name="defaultLightInactiveCircle">#404040</color>
+    <color name="defaultLightInactiveCircle">#AAAAAA</color>
     <color name="defaultLightFontColor">@color/colorAccentLight</color>
 </resources>

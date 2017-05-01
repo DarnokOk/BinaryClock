@@ -8,4 +8,36 @@
         <item>@string/theme_dark_value</item>
         <item>@string/theme_light_value</item>
     </string-array>
+    <string-array name="numbers_size">
+        <item>@string/numbers_size_tiny</item>
+        <item>@string/numbers_size_small</item>
+        <item>@string/numbers_size_normal</item>
+        <item>@string/numbers_size_big</item>
+        <item>@string/numbers_size_huge</item>
+        <item>@string/numbers_size_enormous</item>
+    </string-array>
+    <string-array name="numbers_size_values">
+        <item>@string/numbers_size_tiny_value</item>
+        <item>@string/numbers_size_small_value</item>
+        <item>@string/numbers_size_normal_value</item>
+        <item>@string/numbers_size_big_value</item>
+        <item>@string/numbers_size_huge_value</item>
+        <item>@string/numbers_size_enormous_value</item>
+    </string-array>
+    <string-array name="circle_width">
+        <item>@string/circle_width_tiny</item>
+        <item>@string/circle_width_small</item>
+        <item>@string/circle_width_normal</item>
+        <item>@string/circle_width_big</item>
+        <item>@string/circle_width_huge</item>
+        <item>@string/circle_width_enormous</item>
+    </string-array>
+    <string-array name="circle_width_values">
+        <item>@string/circle_width_tiny_value</item>
+        <item>@string/circle_width_small_value</item>
+        <item>@string/circle_width_normal_value</item>
+        <item>@string/circle_width_big_value</item>
+        <item>@string/circle_width_huge_value</item>
+        <item>@string/circle_width_enormous_value</item>
+    </string-array>
 </resources>
