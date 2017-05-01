@@ -12,11 +12,11 @@ import dzik.binaryclock.clock.layout.LinearLayoutLine;
 
 public class ClockManager {
     private static final int MS_TILL_REFRESH = 100; //At worst it will be delayed by 0,1s only, which isn't that much noticeable
-    private Context mContext;
+    private final Context mContext;
     private LinearLayout mClockLayout;
-    private boolean[][] mBinaryTime = new boolean[3][6];
-    private int[] mTime = new int[3];
-    private int[] mColor = new int[3];
+    private final boolean[][] mBinaryTime = new boolean[3][6];
+    private final int[] mTime = new int[3];
+    private final int[] mColor = new int[3];
 
     public ClockManager(Context context) {
         mContext = context;

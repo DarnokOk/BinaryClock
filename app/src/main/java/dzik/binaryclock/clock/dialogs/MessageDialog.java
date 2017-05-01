@@ -4,15 +4,16 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
 
 public class MessageDialog extends DialogFragment {
-    public final static String MESSAGE_KEY = "message";
-    public final static String POSITIVE_KEY = "positive";
-    public final static String NEGATIVE_KEY = "negative";
-    public final static String LISTENER_KEY = "listener";
+    private final static String MESSAGE_KEY = "message";
+    private final static String POSITIVE_KEY = "positive";
+    private final static String NEGATIVE_KEY = "negative";
+    private final static String LISTENER_KEY = "listener";
 
     public static MessageDialog newInstance(String message, String positive, String negative, DialogListener listener) {
         MessageDialog dialog = new MessageDialog();
@@ -31,6 +32,7 @@ public class MessageDialog extends DialogFragment {
         void onCancel();
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         String message = getArguments().getString(MESSAGE_KEY);

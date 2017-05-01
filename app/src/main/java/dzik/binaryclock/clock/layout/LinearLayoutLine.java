@@ -15,10 +15,7 @@ import java.util.ArrayList;
 import dzik.binaryclock.R;
 
 public class LinearLayoutLine extends LinearLayout {
-    public final static int CIRCLES_IN_LINE = 6;
-    private boolean[] mBinaryTime;
-    private String mTime;
-    private int mActiveColor;
+    private final static int CIRCLES_IN_LINE = 6;
     private TextView mTimeTextView;
     private ArrayList<SquareImageView> mCircles;
 
@@ -38,32 +35,29 @@ public class LinearLayoutLine extends LinearLayout {
     }
 
     public void setBinaryTime(boolean[] binaryTime) {
-        mBinaryTime = binaryTime;
         for(int i = 0; i < CIRCLES_IN_LINE; i++) {
-            mCircles.get(i).setToggled(mBinaryTime[i]);
+            mCircles.get(i).setToggled(binaryTime[i]);
         }
     }
 
     public void setTime(String time) {
-        mTime = time;
         if(PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean(getResources().getString(R.string.display_numbers_key), true)) {
-            mTimeTextView.setText(mTime);
+            mTimeTextView.setText(time);
         }
     }
 
     public void setActiveColor(int color) {
-        mActiveColor = color;
         for(int i = 0; i < CIRCLES_IN_LINE; i++) {
-            mCircles.get(i).setActiveColor(mActiveColor);
+            mCircles.get(i).setActiveColor(color);
         }
     }
 
-    public void createView() {
+    private void createView() {
         mCircles = new ArrayList<>();
         setOrientation(LinearLayout.HORIZONTAL);
 
         for(int j = 0; j < CIRCLES_IN_LINE; j++) {
-            RelativeLayout circle = (RelativeLayout) LayoutInflater.from(getContext()).inflate(R.layout.circle_layout, null);
+            RelativeLayout circle = (RelativeLayout) LayoutInflater.from(getContext()).inflate(R.layout.circle_layout, this, false);
             circle.setLayoutParams(new TableLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT, 1f));
 
             if(j == CIRCLES_IN_LINE - 1) {

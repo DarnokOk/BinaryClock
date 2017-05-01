@@ -30,7 +30,7 @@ public class SquareImageView extends ImageView {
         createView();
     }
 
-    public void createView() {
+    private void createView() {
         mDrawable = new GradientDrawable();
         mDrawable.setShape(GradientDrawable.OVAL);
         setImageDrawable(mDrawable);

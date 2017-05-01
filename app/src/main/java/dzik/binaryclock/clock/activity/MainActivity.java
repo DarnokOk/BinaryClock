@@ -11,7 +11,6 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -19,8 +18,6 @@ import dzik.binaryclock.R;
 import dzik.binaryclock.clock.clock.ClockManager;
 
 public class MainActivity extends AppCompatActivity {
-    private static final boolean AUTO_HIDE = true;
-    private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();
     private FrameLayout mActivityContent;
@@ -54,16 +51,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void run() {
             hide();
-        }
-    };
-
-    private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            if (AUTO_HIDE) {
-                delayedHide(AUTO_HIDE_DELAY_MILLIS);
-            }
-            return false;
         }
     };
 
@@ -117,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    SharedPreferences.OnSharedPreferenceChangeListener mOnSharedPreferenceChangeListener =
+    private final SharedPreferences.OnSharedPreferenceChangeListener mOnSharedPreferenceChangeListener =
         new SharedPreferences.OnSharedPreferenceChangeListener() {
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
                 mClockManager.onUpdatedPreferences();
