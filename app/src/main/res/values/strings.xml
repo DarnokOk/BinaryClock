@@ -41,6 +41,21 @@
                 <string name="numbers_size_enormous">Enormous</string>
                     <string name="numbers_size_enormous_value" translatable="false">64</string>
 
+        <string name="circle_width_key" translatable="false">circle_width</string>
+            <string name="circle_width_title">Circle\'s edge width</string>
+                <string name="circle_width_tiny">Tiny</string>
+                    <string name="circle_width_tiny_value" translatable="false">2</string>
+                <string name="circle_width_small">Small</string>
+                    <string name="circle_width_small_value" translatable="false">3</string>
+                <string name="circle_width_normal">Normal</string>
+                    <string name="circle_width_normal_value" translatable="false">4</string>
+                <string name="circle_width_big">Big</string>
+                    <string name="circle_width_big_value" translatable="false">6</string>
+                <string name="circle_width_huge">Huge</string>
+                    <string name="circle_width_huge_value" translatable="false">8</string>
+                <string name="circle_width_enormous">Enormous</string>
+                    <string name="circle_width_enormous_value" translatable="false">12</string>
+
     <string name="colors_category">Colors</string>
         <string name="color_background_key" translatable="false">color_background</string>
             <string name="color_background_title">Background</string>

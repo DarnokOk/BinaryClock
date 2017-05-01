@@ -23,6 +23,14 @@
             android:entries="@array/numbers_size"
             android:entryValues="@array/numbers_size_values"
             android:persistent="true" />
+        <ListPreference
+            android:key="@string/circle_width_key"
+            android:title="@string/circle_width_title"
+            android:summary="%s"
+            android:defaultValue="@string/circle_width_normal_value"
+            android:entries="@array/circle_width"
+            android:entryValues="@array/circle_width_values"
+            android:persistent="true" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/colors_category">
         <net.margaritov.preference.colorpicker.ColorPickerPreference

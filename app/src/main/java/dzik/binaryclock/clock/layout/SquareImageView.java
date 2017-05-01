@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
@@ -13,6 +14,7 @@ public class SquareImageView extends ImageView {
     private GradientDrawable mDrawable;
     private boolean mToggled;
     private int mActiveColor;
+
     public SquareImageView(Context context) {
         super(context);
         createView();
@@ -47,7 +49,10 @@ public class SquareImageView extends ImageView {
             color = PreferenceManager.getDefaultSharedPreferences(getContext())
                     .getInt(getResources().getString(R.string.color_circle_inactive_key), 0);
         }
-        mDrawable.setStroke(getMeasuredHeight() / 30, color);
+        int multiplier = Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(getContext())
+                .getString(getResources().getString(R.string.circle_width_key),
+                        getResources().getString(R.string.circle_width_normal_value)));
+        mDrawable.setStroke(getMeasuredHeight() * multiplier / 120, color);
     }
 
     public void setActiveColor(int color) {

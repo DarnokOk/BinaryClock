@@ -11,7 +11,7 @@ import dzik.binaryclock.R;
 import dzik.binaryclock.clock.layout.LinearLayoutLine;
 
 public class ClockManager {
-    private static final int MS_TILL_REFRESH = 400; //At worst it will be delayed by 0,4s only, which isn't that much noticeable
+    private static final int MS_TILL_REFRESH = 100; //At worst it will be delayed by 0,1s only, which isn't that much noticeable
     private Context mContext;
     private LinearLayout mClockLayout;
     private boolean[][] mBinaryTime = new boolean[3][6];
@@ -54,16 +54,16 @@ public class ClockManager {
         }
     }
 
-    private void updateTextViews() {
-        for(int i = 0; i < 3; i++) {
-            ((LinearLayoutLine) mClockLayout.getChildAt(i)).updateTextViews();
-        }
-    }
-
     private void updateColors() {
         getColors();
         for(int i = 0; i < 3; i++) {
             ((LinearLayoutLine) mClockLayout.getChildAt(i)).setActiveColor(mColor[i]);
+        }
+    }
+
+    private void updateTextViews() {
+        for(int i = 0; i < 3; i++) {
+            ((LinearLayoutLine) mClockLayout.getChildAt(i)).updateTextViews();
         }
     }
 

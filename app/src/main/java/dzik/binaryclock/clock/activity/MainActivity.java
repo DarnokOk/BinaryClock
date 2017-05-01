@@ -121,6 +121,9 @@ public class MainActivity extends AppCompatActivity {
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
                 mClockManager.onUpdatedPreferences();
                 updateActivityBackgroundColor();
+                if(key.equals(getString(R.string.circle_width_key))) {
+                    recreate();
+                }
             }
         };
 

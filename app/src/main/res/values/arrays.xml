@@ -24,14 +24,20 @@
         <item>@string/numbers_size_huge_value</item>
         <item>@string/numbers_size_enormous_value</item>
     </string-array>
-    <!--
-    <string-array name="numbers_size_values">
-        <item>@dimen/tiny_text_size</item>
-        <item>@dimen/small_text_size</item>
-        <item>@dimen/normal_text_size</item>
-        <item>@dimen/big_text_size</item>
-        <item>@dimen/huge_text_size</item>
-        <item>@dimen/enormous_text_size</item>
+    <string-array name="circle_width">
+        <item>@string/circle_width_tiny</item>
+        <item>@string/circle_width_small</item>
+        <item>@string/circle_width_normal</item>
+        <item>@string/circle_width_big</item>
+        <item>@string/circle_width_huge</item>
+        <item>@string/circle_width_enormous</item>
     </string-array>
-    -->
+    <string-array name="circle_width_values">
+        <item>@string/circle_width_tiny_value</item>
+        <item>@string/circle_width_small_value</item>
+        <item>@string/circle_width_normal_value</item>
+        <item>@string/circle_width_big_value</item>
+        <item>@string/circle_width_huge_value</item>
+        <item>@string/circle_width_enormous_value</item>
+    </string-array>
 </resources>
