@@ -1,9 +1,6 @@
 package dzik.binaryclock.clock.activity;
 
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.preference.Preference;
