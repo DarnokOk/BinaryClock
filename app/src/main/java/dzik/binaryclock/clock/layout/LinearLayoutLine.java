@@ -1,6 +1,7 @@
 package dzik.binaryclock.clock.layout;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -89,6 +90,11 @@ public class LinearLayoutLine extends LinearLayout {
         }
         if(!PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean(getResources().getString(R.string.display_numbers_key), true)) {
             mTimeTextView.setText("");
+        }
+        if(PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean(getResources().getString(R.string.bold_numbers_key), false)) {
+            mTimeTextView.setTypeface(mTimeTextView.getTypeface(), Typeface.BOLD);
+        } else {
+            mTimeTextView.setTypeface(mTimeTextView.getTypeface(), Typeface.NORMAL);
         }
     }
 

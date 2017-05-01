@@ -31,4 +31,12 @@
     <string name="numbers_size_big">Duży</string>
     <string name="numbers_size_huge">Wielki</string>
     <string name="numbers_size_enormous">Ogromny</string>
+    <string name="bold_numbers_title">Pogrubione liczby</string>
+    <string name="circle_width_title">Szerokość krawędzi okręgu</string>
+    <string name="circle_width_big">Duża</string>
+    <string name="circle_width_enormous">Ogromna</string>
+    <string name="circle_width_huge">Wielka</string>
+    <string name="circle_width_normal">Normalna</string>
+    <string name="circle_width_small">Mała</string>
+    <string name="circle_width_tiny">Malutka</string>
 </resources>

@@ -26,6 +26,9 @@
         <string name="display_numbers_key" translatable="false">display_numbers</string>
             <string name="display_numbers_title">Display numbers</string>
 
+        <string name="bold_numbers_key" translatable="false">bold_numbers</string>
+            <string name="bold_numbers_title">Bold numbers</string>
+
         <string name="numbers_size_key" translatable="false">numbers_size</string>
             <string name="numbers_size_title">Numbers size</string>
                 <string name="numbers_size_tiny">Tiny</string>

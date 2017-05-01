@@ -14,6 +14,12 @@
             android:title="@string/display_numbers_title"
             android:defaultValue="true"
             android:persistent="true" />
+        <CheckBoxPreference
+            android:key="@string/bold_numbers_key"
+            android:title="@string/bold_numbers_title"
+            android:dependency="@string/display_numbers_key"
+            android:defaultValue="false"
+            android:persistent="true" />
         <ListPreference
             android:key="@string/numbers_size_key"
             android:title="@string/numbers_size_title"
